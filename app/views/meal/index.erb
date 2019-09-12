@@ -1,0 +1,7 @@
+<h1>Meals</h1>
+
+<% @meals.each do |meal| %>
+<ol>
+  <li><%= meal.name %>: <%= meal.description %></li>
+</ol>
+<% end %>
