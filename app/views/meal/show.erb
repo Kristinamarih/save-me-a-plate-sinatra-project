@@ -1,0 +1,9 @@
+<h3><%= @meal.name %></h3>
+<p><%= @meal.description %></p>
+
+<form action="/meals/<%= @meal.id %>/delete" method="POST">
+  <input type="hidden" name="_method" id="hidden" value="DELETE">
+  <input type="submit" value="Delete">
+</form>
+
+<a href="/meals/<%= @meal.id %>/edit">Edit meal</a>
