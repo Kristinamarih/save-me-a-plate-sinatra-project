@@ -1,34 +1,34 @@
 class UsersController < ApplicationController
 
-  get '/user/:id' do
+  get '/users/:id' do
     @user = User.find_by(params[:id])
-    erb :'/user/show'
+    erb :'/users/show'
   end
 
   get '/signup' do
     if !logged_in?
-      erb :'/user/new'
+      erb :'/users/new'
     else
-      redirect '/meal/show'
+      redirect '/meals/show'
     end
   end
 
   post '/signup' do
     if params[:email] == "" || params[:password] == ""
-      redirect '/user/new'
+      redirect '/users/new'
     else
       @user = User.new(:email => params[:email], :password => params[:password])
       @user.save
       session[:user_id] = @user.id
-      redirect '/user/show'
+      redirect '/users/show'
     end
   end
 
   get '/login' do
     if !logged_in?
-      erb :'/user/login'
+      erb :'/users/login'
     else
-      redirect '/meal/show'
+      redirect '/meals/show'
     end
   end
 
@@ -36,16 +36,16 @@ class UsersController < ApplicationController
     @user = User.find_by(:email => params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect '/meal/show'
+      redirect '/meals/show'
     else
-      redirect '/user/new'
+      redirect '/users/new'
     end
   end
 
   get '/logout' do
     if logged_in?
       session.destroy
-      redirect '/user/new'
+      redirect '/users/new'
     else
       redirect '/'
     end

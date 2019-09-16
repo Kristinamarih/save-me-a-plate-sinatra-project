@@ -18,6 +18,10 @@ class ApplicationController < Sinatra::Base
       !!current_user
     end
 
+    def admin?
+      @users.admin == true
+    end
+
     def current_user
       @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
     end
