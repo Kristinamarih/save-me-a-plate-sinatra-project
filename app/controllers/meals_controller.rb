@@ -3,7 +3,7 @@ class MealsController < ApplicationController
   get '/meals' do
     if logged_in?
       @meals = Meal.all
-      erb :'/meals/index'
+      erb :'/meals'
     else
       redirect '/users/login'
     end
@@ -13,14 +13,14 @@ class MealsController < ApplicationController
     if logged_in? && admin?
       erb :'/meals/new'
     else
-      redirect '/meals/show'
+      redirect '/meals'
     end
   end
 
   get '/meals/:id' do
     if logged_in?
       @meal = Meal.find(params[:id])
-      erb :'/meals/show'
+      erb :'/meals/show_meal'
     else
       redirect '/login'
     end
@@ -43,7 +43,7 @@ class MealsController < ApplicationController
       @meal = Meal.find(params[:id])
       erb :'/meals/edit'
     else
-      redirect '/meals/show'
+      redirect '/meals/show_meal'
     end
   end
 
@@ -59,6 +59,18 @@ class MealsController < ApplicationController
       end
     else
       redirect '/users/login'
+    end
+  end
+
+  delete '/meals/:id/delete' do
+    if logged_in? && admin?
+      @meal = Meal.find(params[:id])
+      if @meal && @meal.user == current_user
+        @meal.delete
+      end
+      redirect to '/meals'
+    else
+      redirect to '/login'
     end
   end
 end
