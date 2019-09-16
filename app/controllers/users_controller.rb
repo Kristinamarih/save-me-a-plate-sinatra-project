@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'/users/new'
     else
-      redirect '/meals/show'
+      redirect to '/meals/show'
     end
   end
 
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       @user = User.new(:email => params[:email], :password => params[:password])
       @user.save
       session[:user_id] = @user.id
-      redirect '/users/show'
+      redirect to '/meals/show'
     end
   end
 
@@ -28,26 +28,26 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'/users/login'
     else
-      redirect '/meals/show'
+      redirect to '/meals/show'
     end
   end
 
   post '/login' do
     @user = User.find_by(:email => params[:email])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect '/meals/show'
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect to '/meals/show'
     else
-      redirect '/users/new'
+      redirect to '/users/new'
     end
   end
 
   get '/logout' do
     if logged_in?
       session.destroy
-      redirect '/users/new'
+      redirect to '/users/new'
     else
-      redirect '/'
+      redirect to '/'
     end
   end
 end
