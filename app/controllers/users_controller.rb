@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   get '/user/:id' do
-    @user = User.find(params[:id])
+    @user = User.find_by(params[:id])
     erb :'/user/show'
   end
 
@@ -9,7 +9,8 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'/user/new'
     else
-      redirect '/user/show'
+      redirect '/meal/show'
+    end
   end
 
   post '/signup' do
