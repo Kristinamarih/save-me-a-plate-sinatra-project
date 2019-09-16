@@ -19,8 +19,8 @@ class ApplicationController < Sinatra::Base
       !!current_user
     end
 
-    def admin?
-      @users.admin == true
+    def restaurant?
+      @users.restaurant == true
     end
 
     def current_user

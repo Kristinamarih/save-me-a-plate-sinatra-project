@@ -3,7 +3,7 @@
 
 <nav>
   <% if logged_in? %>
-    <% if admin? %>
+    <% if restaurant? %>
       <a href="/meals/edit"> Edit Meals </a>
       <a href="/meals/new"> Create Meals </a>
       <% else %>
