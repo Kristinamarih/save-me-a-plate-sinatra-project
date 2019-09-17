@@ -5,3 +5,8 @@
   <li><%= meal.name %>: <%= meal.description %></li>
 </ol>
 <% end %>
+
+<% if is_restaurant? %>
+<a href="/meals/edit"> Edit Meals </a>
+<a href="/meals/new"> Create Meals </a>
+<% end %>

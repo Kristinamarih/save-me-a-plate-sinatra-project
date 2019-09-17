@@ -10,7 +10,7 @@ class MealsController < ApplicationController
   end
 
   get '/meals/new' do
-    if logged_in? && restaurant?
+    if logged_in? && is_restaurant?
       erb :'/meals/create_meal'
     else
       redirect '/meals'
@@ -27,7 +27,7 @@ class MealsController < ApplicationController
   end
 
   post '/meals' do
-    if logged_in? && restaurant?
+    if logged_in? && is_restaurant?
       if params[:name] == ""
         redirect '/meals/new'
       else
@@ -39,7 +39,7 @@ class MealsController < ApplicationController
   end
 
   get '/meals/:id/edit' do
-    if logged_in? && restaurant? && @meal.user == current_user
+    if logged_in? && is_restaurant? && @meal.user == current_user
       @meal = Meal.find(params[:id])
       erb :'/meals/edit'
     else
@@ -48,7 +48,7 @@ class MealsController < ApplicationController
   end
 
   patch '/meals/:id' do
-    if logged_in? && restaurant?
+    if logged_in? && is_restaurant?
       if params[:description] == ""
         redirect "/meals/#{params[:id]}/edit"
       else
@@ -63,7 +63,7 @@ class MealsController < ApplicationController
   end
 
   delete '/meals/:id/delete' do
-    if logged_in? && restaurant?
+    if logged_in? && is_restaurant?
       @meal = Meal.find(params[:id])
       if @meal && @meal.user == current_user
         @meal.delete

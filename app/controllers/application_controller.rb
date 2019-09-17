@@ -19,8 +19,8 @@ class ApplicationController < Sinatra::Base
       !!current_user
     end
 
-    def restaurant?
-      current_user.restaurant == true
+    def is_restaurant?
+      logged_in? ? current_user.restaurant : false
     end
 
     def current_user
