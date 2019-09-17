@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def restaurant?
-      @users.restaurant == true
+      current_user.restaurant == true
     end
 
     def current_user
