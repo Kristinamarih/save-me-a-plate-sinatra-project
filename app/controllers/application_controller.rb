@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def is_restaurant?
-      logged_in? ? current_user.restaurant : false
+      params[:restaurant] == true
     end
 
     def current_user

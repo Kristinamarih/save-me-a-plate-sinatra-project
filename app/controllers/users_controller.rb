@@ -17,7 +17,11 @@ class UsersController < ApplicationController
     if params[:email] == "" || params[:password] == ""
       redirect '/signup'
     else
+      if params[:restaurant] == true
       @user = User.new(:email => params[:email], :password => params[:password], :restaurant => params[:restaurant])
+    else
+      @user = User.new(:email => params[:email], :password => params[:password])
+    end
       @user.save
       session[:user_id] = @user.id
       redirect to '/meals'
