@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def is_restaurant?
-      !!@current_user.restaurant
+      current_user.try(:restaurant?)
     end
 
     def current_user

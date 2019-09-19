@@ -31,7 +31,7 @@ class MealsController < ApplicationController
       if params[:name] == ""
         redirect '/meals/new'
       else
-        @meal = Meal.find_or_create_by(params)
+        @meal = Meal.new(params)
         @meal.save
         redirect "/meals/#{@meal.id}"
       end
