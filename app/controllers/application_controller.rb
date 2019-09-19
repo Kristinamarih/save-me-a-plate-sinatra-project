@@ -20,11 +20,11 @@ class ApplicationController < Sinatra::Base
     end
 
     def is_restaurant?
-      params[:restaurant] == true
+      !!params[:restaurant] == true
     end
 
     def current_user
-      @current_user ||= User.find(id: session[:user_id]) if session[:user_id]
+      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
     end
   end
 
