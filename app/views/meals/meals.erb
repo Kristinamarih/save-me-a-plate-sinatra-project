@@ -2,7 +2,7 @@
 
 <% @meals.each do |meal| %>
 <ol>
-  <li><%= meal.name %>: <%= meal.description %></li>
+  <li><a href="/meals/<%= meal.id %>"> <%= meal.name %></a></li>
 </ol>
 <% end %>
 
