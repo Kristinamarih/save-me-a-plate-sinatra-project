@@ -31,7 +31,7 @@ class MealsController < ApplicationController
       if params[:name] == ""
         redirect '/meals/new'
       else
-        @meal = Meal.new(params)
+        @meal = current_user.meals.build(name: params[:name], description: params[:description])
         @meal.save
         redirect "/meals/#{@meal.id}"
       end
@@ -39,11 +39,15 @@ class MealsController < ApplicationController
   end
 
   get '/meals/:id/edit' do
-    if logged_in? && is_restaurant? && @meal.user == current_user
-      @meal = Meal.find(params[:id])
+    if logged_in? && is_restaurant?
+      @meal = Meal.find_by_id(params[:id])
+      if @meal.user == current_user
       erb :'/meals/edit'
+      else
+        redirect to '/meals'
+      end
     else
-      redirect '/meals'
+      redirect '/login'
     end
   end
 
@@ -52,8 +56,8 @@ class MealsController < ApplicationController
       if params[:description] == ""
         redirect "/meals/#{params[:id]}/edit"
       else
-        @meal = Meal.find(params[:id])
-        @meal.update(params[:meal])
+        @meal = Meal.find_by_id(params[:id])
+        @meal.update(name: params[:name], description: params[:description])
         @meal.save
         redirect "/meals/#{@meal.id}"
       end
@@ -64,7 +68,7 @@ class MealsController < ApplicationController
 
   delete '/meals/:id/delete' do
     if logged_in? && is_restaurant?
-      @meal = Meal.find(params[:id])
+      @meal = Meal.find_by_id(params[:id])
       if @meal && @meal.user == current_user
         @meal.delete
       end
