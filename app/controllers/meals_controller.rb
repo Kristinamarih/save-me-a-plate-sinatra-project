@@ -44,6 +44,7 @@ class MealsController < ApplicationController
       if @meal.user == current_user
       erb :'/meals/edit'
       else
+        flash[:notice] = "Sorry, but that one doesn't belong to you!"
         redirect to '/meals'
       end
     else
