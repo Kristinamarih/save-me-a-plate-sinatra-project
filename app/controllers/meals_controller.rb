@@ -60,6 +60,7 @@ class MealsController < ApplicationController
         @meal = Meal.find_by_id(params[:id])
         @meal.update(name: params[:name], description: params[:description])
         @meal.save
+        flash[:notice] = "Your meal was successfully updated!"
         redirect "/meals/#{@meal.id}"
       end
     else
@@ -73,6 +74,7 @@ class MealsController < ApplicationController
       if @meal && @meal.user == current_user
         @meal.delete
       end
+      flash[:notice] = "Your meal was successfully deleted!"
       redirect to '/meals'
     else
       redirect to '/login'
