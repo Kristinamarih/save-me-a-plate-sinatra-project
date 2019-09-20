@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  
   get '/users/:id' do
     @user = User.find_by(params[:id])
     erb :'users/show'
@@ -9,12 +9,14 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'users/create_user'
     else
+      flash[:notice] = "You already have an account!"
       redirect to '/meals'
     end
   end
 
   post '/signup' do
     if params[:email] == "" || params[:password] == ""
+      flash[:notice] = "Fields cannot be blank!"
       redirect '/signup'
     else
       if params[:restaurant]
@@ -25,6 +27,7 @@ class UsersController < ApplicationController
     end
       @user.save
       session[:user_id] = @user.id
+      flash[:notice] = "You're now signed up!"
       redirect to '/meals'
     end
   end

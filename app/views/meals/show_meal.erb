@@ -2,6 +2,10 @@
 <h3><%= @meal.name %></h3>
 <p><%= @meal.description %></p>
 <p><%= @meal.created_at %></p>
+<form action="/meals/<%= @meal.id %>/delete" method="POST">
+  <input type="hidden" name="_method" id="hidden" value="POST">
+  <input type="submit" value="Save meal">
+</form>
 
 <% if is_restaurant? %>
 <form action="/meals/<%= @meal.id %>/delete" method="POST">
