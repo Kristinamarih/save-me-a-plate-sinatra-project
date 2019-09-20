@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  
+
   get '/users/:id' do
-    @user = User.find_by(params[:id])
+    @user = User.find_by_id(params[:id])
     erb :'users/show'
   end
 
@@ -44,9 +44,11 @@ class UsersController < ApplicationController
     @user = User.find_by(:email => params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
+      flash[:notice] = "Welcome back!"
       redirect to '/meals'
     else
-      redirect to '/signup'
+      flash[:notice] = "Oops! We had a problem with your log in! Please try again."
+      redirect to '/login'
     end
   end
 

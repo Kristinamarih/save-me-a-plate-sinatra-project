@@ -3,12 +3,18 @@
 <% end %>
 
 <h1>Meals</h1>
-
-<% @meals.each do |meal| %>
-<ol>
-  <li><a href="/meals/<%= meal.id %>"> <%= meal.name %></a></li>
-</ol>
+<% if @meals.empty? %>
+<p>Sorry, there are no meals available at the moment!</p>
+<% else %>
+  <% @meals.each do |meal| %>
+  <ol>
+    <li><a href="/meals/<%= meal.id %>"> <%= meal.name %></a></li>
+  </ol>
+  <% end %>
 <% end %>
+
+<a href="/users/show"> Your Saved Meals </a>|
+<a href="/logout"> Log Out </a>
 
 <% if is_restaurant? %>
 <p><a href="/meals/edit"> Edit Meals </a></p>
