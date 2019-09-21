@@ -31,7 +31,7 @@ class MealsController < ApplicationController
       if params[:name] == ""
         redirect '/meals/new'
       else
-        @meal = current_user.meals.build(name: params[:name], description: params[:description])
+        @meal = current_user.meals.build(name: params[:name], description: params[:description], phone_number: params[:phone_number])
         @meal.save
         redirect "/meals/#{@meal.id}"
       end
@@ -54,11 +54,11 @@ class MealsController < ApplicationController
 
   patch '/meals/:id' do
     if logged_in? && is_restaurant?
-      if params[:description] == ""
+      if params[:description] == "" || params[:name] == "" || params[:phone_number] == ""
         redirect "/meals/#{params[:id]}/edit"
       else
         @meal = Meal.find_by_id(params[:id])
-        @meal.update(name: params[:name], description: params[:description])
+        @meal.update(name: params[:name], description: params[:description], phone_number: params[:phone_number])
         @meal.save
         flash[:notice] = "Your meal was successfully updated!"
         redirect "/meals/#{@meal.id}"
@@ -73,8 +73,10 @@ class MealsController < ApplicationController
       @meal = Meal.find_by_id(params[:id])
       if @meal && @meal.user == current_user
         @meal.delete
+        flash[:notice] = "Your meal was successfully deleted!"
+      else
+        flash[:notice] = "Sorry, but that one doesn't belong to you!"
       end
-      flash[:notice] = "Your meal was successfully deleted!"
       redirect to '/meals'
     else
       redirect to '/login'

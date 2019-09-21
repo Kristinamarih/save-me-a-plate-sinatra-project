@@ -13,10 +13,10 @@
   <% end %>
 <% end %>
 
-<a href="/users/show"> Your Saved Meals </a>|
-<a href="/logout"> Log Out </a>
+<p><a href="/logout">Log Out</a>
 
 <% if is_restaurant? %>
-<p><a href="/meals/edit"> Edit Meals </a></p>
-<p><a href="/meals/new"> Create Meals </a></p>
+|<a href="/users/show"> Your Saved Meals</a>
+|<a href="/meals/edit"> Edit Meals</a>
+|<a href="/meals/new"> Create Meals </a></p>
 <% end %>
