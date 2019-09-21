@@ -1,8 +1,16 @@
 class UsersController < ApplicationController
 
   get '/users/:id' do
+    if !logged_in?
+      redirect '/login'
+    end
+
     @user = User.find_by_id(params[:id])
-    erb :'users/show'
+    if !@user.nil? && @user == current_user
+      erb :'users/show'
+    else
+      redirect '/meals'
+    end
   end
 
   get '/signup' do

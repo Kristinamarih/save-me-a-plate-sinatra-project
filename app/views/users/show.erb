@@ -1,11 +1,9 @@
-<h1>Here are your meals:</h1>
+<h1>Your meals</h1>
 
-<% if @meals.empty? %>
-<p>Sorry, you have no meals at the moment!</p>
-<% else %>
-  <% @user.meals.each do |meal| %>
-    <ol>
-      <li><%= meal.name %>: <%= meal.description %></li>
-    </ol>
-    <% end %>
+<% @user.meals.each do |meal| %>
+  <ol>
+    <li><a href="/meals/<%= meal.id %>"><%= meal.name %></a></li>
+  </ol>
 <% end %>
+
+<a href="/meals"> Back to all meals</a></p>

@@ -5,16 +5,19 @@
 <h1>Meal details</h1>
 
 <h3><%= @meal.name %></h3>
-<p><%= @meal.phone_number %></p>
-<p><%= @meal.description %></p>
-<p><%= @meal.created_at %></p>
+<p>Restaurant phone number: <%= @meal.phone_number %></p>
+<p>Description: <%= @meal.description %></p>
+<p>Time added: <%= @meal.created_at %></p>
 
-<% if is_restaurant? %>
+<% if is_restaurant? && @meal.user == current_user %>
 <form action="/meals/<%= @meal.id %>/delete" method="POST">
   <input type="hidden" name="_method" id="hidden" value="DELETE">
   <input type="submit" value="Delete">
 </form>
 
-<p><a href="/meals/<%= @meal.id %>/edit">Edit meal</a></p>
+<br>
+
+<p><a href="/meals/<%= @meal.id %>/edit">Edit meal</a>
+|
 <% end %>
-<p><a href="/meals"> Back to all meals</a></p>
+<a href="/meals">Back to all meals</a></p>
