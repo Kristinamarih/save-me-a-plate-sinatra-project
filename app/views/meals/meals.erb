@@ -3,13 +3,15 @@
 <% end %>
 
 <h1>Meals</h1>
+
 <% if @meals.empty? %>
   <p>Sorry, there are no meals available at the moment!</p>
 <% else %>
 
+
+  <% @meals.each do |meal| %>
   <ol>
-    <% @meals.each do |meal| %>
-      <li><a href="/meals/<%= meal.id %>"> <%= meal.name %></a></li>
+    <li><a href="/meals/<%= meal.id %>"> <%= meal.name %></a></li>
   <% end %>
   </ol>
 <% end %>

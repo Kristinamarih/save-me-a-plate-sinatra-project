@@ -1,11 +1,14 @@
 <h1>Add a new meal</h1>
 
 <form action="/meals" method="POST">
-  <p>Meal name: <input type="text" id="name" name="name" placeholder="Restaurant name - meal name"></p>
+  <label>Meal name:</label>
+  <input type="text" id="name" name="name" placeholder="Restaurant name - meal name"><br>
 
-  <p>Restaurant phone number: <input type="text" id="phone_number" name="phone_number" placeholder="Phone number"></p>
+  <label>Restaurant phone number:</label>
+  <input type="text" id="phone_number" name="phone_number" placeholder="Phone number"><br>
 
-  <p>Meal description: <input type="text" id="description" name="description" placeholder="Brief list of ingredients and allergens"></p>
+  <label>Meal description:</label>
+  <input type="text" id="description" name="description" placeholder="Brief list of ingredients and allergens"><br>
 
   <input type="submit" name="submit" value="Create meal">
 </form>

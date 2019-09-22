@@ -5,12 +5,14 @@
 <h1>Sign up!</h1>
 
 <form action="/signup" method="POST">
-  <p>Email: <input type="text" id="email" name="email"></p>
+  <label>Email:</label>
+  <input type="text" id="email" name="email"><br>
 
-  <p>Password: <input type="text" id="password" name="password"></p>
+  <label>Password:</label>
+  <input type="text" id="password" name="password"><br>
 
+  <label>Restaurant:</label>
   <input type="checkbox" id="restaurant" name="restaurant" value="true">
-  <label for="restaurant">Restaurant</label>
 
   <input type="submit" name="submit" value="Sign up">
 </form>

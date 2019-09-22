@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     if !@meal.nil?
       erb :'users/show'
     else
+      flash[:notice] = "Sorry, you have no meals!"
       redirect '/meals'
     end
   end
@@ -29,11 +30,11 @@ class UsersController < ApplicationController
       redirect '/signup'
     else
       if params[:restaurant]
-      @user = User.new(:email => params[:email], :password => params[:password], :restaurant => params[:restaurant])
-      @user.restaurant == true
-    else
-      @user = User.new(:email => params[:email], :password => params[:password])
-    end
+        @user = User.new(:email => params[:email], :password => params[:password], :restaurant => params[:restaurant])
+        @user.restaurant == true
+      else
+        @user = User.new(:email => params[:email], :password => params[:password])
+      end
       @user.save
       session[:user_id] = @user.id
       flash[:notice] = "You're now signed up!"
