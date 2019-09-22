@@ -1,9 +1,9 @@
 <h1>Your meals</h1>
 
-<% @user.meals.each do |meal| %>
+<% @meal.each do |meal| %>
   <ol>
     <li><a href="/meals/<%= meal.id %>"><%= meal.name %></a></li>
   </ol>
 <% end %>
-
-<a href="/meals"> Back to all meals</a></p>
+<br>
+<a href="/meals">Back to all meals</a></p>

@@ -6,7 +6,8 @@ class UsersController < ApplicationController
     end
 
     @user = User.find_by_id(params[:id])
-    if !@user.nil? && @user == current_user
+    @meal = Meal.where(user_id: current_user.id)
+    if !@meal.nil?
       erb :'users/show'
     else
       redirect '/meals'
