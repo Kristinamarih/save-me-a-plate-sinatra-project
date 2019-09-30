@@ -1,6 +1,6 @@
 # Save Me A Plate
 
-This Sinatra MVC project aims to help reduce food waste by encouraging resturants to share what food they have remaining each day, and allows people to view, claim, and pick up those meals!
+This Sinatra MVC project aims to help reduce food waste by encouraging restaurants to share what food they have remaining each day, and allows people to view those meals!
 
 ## Installation
 
