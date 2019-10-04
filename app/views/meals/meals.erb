@@ -8,19 +8,18 @@
   <p>Sorry, there are no meals available at the moment!</p>
 <% else %>
 
-
+<ol>
   <% @meals.each do |meal| %>
-  <ol>
     <li><a href="/meals/<%= meal.id %>"> <%= meal.name %></a></li>
   <% end %>
-  </ol>
+</ol>
 <% end %>
 
 <br>
 
-<p><a href="/logout">Log Out</a>
+<p><a href="/logout"> Log Out</a>
 
 <% if is_restaurant? %>
-|<a href="/users/show"> Your Meals</a>
+|<a href="/users/show"> Your Meals </a>
 |<a href="/meals/new"> Add Meal </a></p>
 <% end %>

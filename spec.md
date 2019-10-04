@@ -2,7 +2,7 @@ Specifications for the Sinatra Assessment
 Specs:
 
  x Use Sinatra to build the app
-    A web framework that sits on Rack. MVC: model, view, controller. Web browser makes a get request, Sinatra looks for route, runs code in the block in controller, , it sends back to browser
+    Sinatra is a Domain Specific Language (situation-specific) web framework that sits on Rack. MVC: model, view, controller. Controllers define an HTTP method using the sinatra routing DSL provided by methods like get and post. Web browser makes a get request, Sinatra looks for route, runs code in the block in controller, , it sends back to browser
 
  x Use ActiveRecord for storing information in a database
 
