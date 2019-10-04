@@ -1,12 +1,9 @@
 class MealsController < ApplicationController
 
   get '/meals' do
-    if logged_in?
+    redirect_if_not_logged_in
       @meals = Meal.all
       erb :'meals/meals'
-    else
-      redirect '/login'
-    end
   end
 
   get '/meals/new' do
@@ -53,7 +50,7 @@ class MealsController < ApplicationController
   end
 
   patch '/meals/:id' do
-    if logged_in? && is_restaurant?
+    if logged_in? && is_restaurant? && @meal.user == current_user
       if params[:description] == "" || params[:name] == "" || params[:phone_number] == ""
         redirect "/meals/#{params[:id]}/edit"
       else

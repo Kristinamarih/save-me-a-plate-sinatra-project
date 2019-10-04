@@ -4,7 +4,7 @@
 
 <h1>Your meals</h1>
 
-<% @meal.each do |meal| %>
+<% @meals.each do |meal| %>
   <ol>
     <li><a href="/meals/<%= meal.id %>"><%= meal.name %></a></li>
   </ol>

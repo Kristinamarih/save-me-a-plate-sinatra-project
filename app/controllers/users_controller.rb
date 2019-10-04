@@ -5,9 +5,10 @@ class UsersController < ApplicationController
       redirect '/login'
     end
 
-    @user = User.find_by_id(params[:id])
-    @meal = Meal.where(user_id: current_user.id)
-    if !@meal.nil?
+    # @user = User.find_by_id(params[:id])
+    # @meal = Meal.where(user_id: current_user.id)
+    @meals = current_user.meals
+    if !@meals.empty?
       erb :'users/show'
     else
       flash[:notice] = "Sorry, you have no meals!"
@@ -25,10 +26,10 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if params[:email] == "" || params[:password] == ""
+    if params[:email] == "" || params[:password] == "" || User.find_by(email: params[:email])
       flash[:notice] = "Fields cannot be blank!"
       redirect '/signup'
-    else
+    else67yy
       if params[:restaurant]
         @user = User.new(:email => params[:email], :password => params[:password], :restaurant => params[:restaurant])
         @user.restaurant == true
